@@ -1,25 +1,31 @@
-import logo from './logo.svg';
 import './App.css';
+import 'bootstrap/dist/css/bootstrap.css';
+
+import React from 'react';
+import { useState } from 'react';
+
+import LinkBox from './components/LinkBox';
+import Player from './components/Player';
+
+
+export const MyContext = React.createContext();
 
 function App() {
+  const [state, setState] = useState({})
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <h2 className='mx-2'> Repeat After Me (RAM) </h2>
+
+      <MyContext.Provider value={{ state, setState }}>
+        < LinkBox />
+      </MyContext.Provider>
+
+      <br />
+      <Player videoId={state.videoId} />
+
     </div>
-  );
+  )
 }
 
 export default App;
