@@ -1,5 +1,7 @@
 # Repeat After Me (RAM)
 
+Repeat After Me (RAM) is a simple educational tool to automatically pause-and-play YouTube videos
+
 This repository contains ReactJS code to 
 play any YouTube video in intervals of 5s
 
