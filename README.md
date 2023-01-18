@@ -8,7 +8,7 @@ play any YouTube video in intervals of 5s
 ## Why did you build this?
 
 To learn speaking, a big part is to get 
-used to the pronunication. YouTube
+used to the pronunciation. YouTube
 has a huge repository of videos that can be
 used for this purpose
 ## How to install and execute
