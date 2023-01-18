@@ -5,6 +5,8 @@ import SpeechRecognition, { useSpeechRecognition } from 'react-speech-recognitio
 
 
 const opts = {
+    height: 180,
+    width: 320,
     playerVars: {
         controls: 0,
         disablekb: 1,
