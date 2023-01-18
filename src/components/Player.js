@@ -20,26 +20,29 @@ const LoopState = {
 }
 
 export default function Player(props) {
+    // Required for handling start/stop and on loop
     const [isPlaying, setIsPlaying] = useState(false);
+    // Needed to handle initial loading case
     const [player, setPlayer] = useState(null);
+    // Store to clear on stop
+    // These change inside useEffect. Hence must be refs
+    // to avoid loop
     const intervalId = useRef(null);
     const loopState = useRef(LoopState.STOPPED);
 
-    const { resetTranscript } = useSpeechRecognition();
+    const { transcript, resetTranscript } = useSpeechRecognition();
 
 
     const doB = useCallback(() => {
         player.pauseVideo();
         SpeechRecognition.startListening();
-        console.log(loopState.current)
-    }, [player, loopState])
+    }, [player])
 
     const doA = useCallback(() => {
         player.playVideo();
         resetTranscript();
         SpeechRecognition.stopListening();
-        console.log(loopState.current)
-    }, [player, resetTranscript, loopState])
+    }, [player, resetTranscript])
 
     const switcher = useCallback(() => {
         if (loopState.current === LoopState.A) {
@@ -77,6 +80,7 @@ export default function Player(props) {
 
     return (
         <div className='mx-2'>
+            <h4>Transcript: {transcript} </h4>
             <h4>Playing: {isPlaying.toString()}</h4>
             <h4>Loop State: {loopState.current.toString()}</h4>
             <br />
