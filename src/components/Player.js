@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useRef, useState } from 'react'
-
+import { parseState } from '../helpers/helper';
 import YouTube from 'react-youtube';
 import SpeechRecognition, { useSpeechRecognition } from 'react-speech-recognition';
 
@@ -81,8 +81,7 @@ export default function Player(props) {
     return (
         <div className='mx-2'>
             <h4>Transcript: {transcript} </h4>
-            <h4>Playing: {isPlaying.toString()}</h4>
-            <h4>Loop State: {loopState.current.toString()}</h4>
+            <h4>Loop State: {parseState(loopState.current.toString())}</h4>
             <br />
             <YouTube
                 videoId={props.videoId}
