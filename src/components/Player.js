@@ -30,7 +30,7 @@ export default function Player(props) {
     const intervalId = useRef(null);
     const loopState = useRef(LoopState.STOPPED);
 
-    const { transcript, resetTranscript } = useSpeechRecognition();
+    const { transcript, resetTranscript, browserSupportsSpeechRecognition } = useSpeechRecognition();
 
 
     const doB = useCallback(() => {
@@ -78,7 +78,7 @@ export default function Player(props) {
         }
     };
 
-    return (
+    return browserSupportsSpeechRecognition ? (
         <div className='mx-2'>
             <h4>Transcript: {transcript} </h4>
             <h4>Loop State: {parseState(loopState.current.toString())}</h4>
@@ -91,5 +91,6 @@ export default function Player(props) {
             <button onClick={handleStart} className='mx-2 btn btn-primary'>Start</button>
             <button onClick={handleStop} className='mx-2 btn btn-danger'>Stop</button>
         </div>
-    )
+    ) : (<span className='mx-2'>Browser does not support speech recognition</span>)
+
 }
